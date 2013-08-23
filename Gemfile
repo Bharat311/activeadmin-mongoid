@@ -7,23 +7,39 @@ gemspec
 
 
 # Test app stuff
+case ENV['RAILS_VERSION']
+when '4'
+  gem 'rails', '~> 3.2.6'
 
-gem 'rails', '~> 3.2.6'
+  # Gems used only for assets and not required
+  # in production environments by default.
+  group :assets do
+    gem 'sass-rails',   '~> 3.2.3'
+    gem 'coffee-rails', '~> 3.2.1'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+    # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+    # gem 'therubyracer', :platforms => :ruby
+    gem 'uglifier', '>= 1.0.3'
+  end
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-  gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
+  gem 'jslint'
+else
+  gem 'rails',        '~> 4.0.0'
+  # gem 'sqlite3'
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'uglifier',     '>= 1.3.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'jquery-rails'
+  gem 'turbolinks'
+  gem 'jbuilder',     '~> 1.2'
+
+  group :doc do
+    gem 'sdoc', require: false
+  end
 end
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'jslint'
 
 group :test do
   gem 'capybara'
